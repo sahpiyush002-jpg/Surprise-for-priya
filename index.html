@@ -10,15 +10,15 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow:hidden;height:100vh;width:100vw;position:relative;}
 
-.page{display:none;width:100vw;height:100vh;flex-direction:column;align-items:center;justify-content:center;position:fixed;top:0;left:0;padding:20px;z-index:10;}
+.page{display:none;width:100vw;height:100vh;flex-direction:column;align-items:center;justify-content:center;position:fixed;top:0;left:0;padding:15px;z-index:10;}
 .page.active{display:flex;animation:fadeIn 0.6s ease;}
 
 @keyframes fadeIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
 
-.polaroid{background:#fff;padding:12px;box-shadow:0 15px 35px rgba(0,0,0,0.5);transform:rotate(var(--r,-3deg));max-width:85%;border-radius:4px;}
-.polaroid img{width:100%;height:auto;display:block;border:2px solid #eee;}
+.polaroid{background:#fff;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,0.5);transform:rotate(var(--r,-3deg));max-width:85%;max-height:55vh;border-radius:6px;overflow:hidden;}
+.polaroid img{width:100%;height:auto;max-height:52vh;display:block;object-fit:contain;border:2px solid #eee;}
 
-.btn-main{background:#fff;color:var(--bg);border:none;padding:14px 32px;border-radius:50px;font-size:1.1rem;font-weight:600;cursor:pointer;margin-top:25px;box-shadow:0 5px 20px rgba(0,0,0,0.3);}
+.btn-main{background:#fff;color:var(--bg);border:none;padding:13px 30px;border-radius:50px;font-size:1.05rem;font-weight:600;cursor:pointer;margin-top:20px;box-shadow:0 5px 20px rgba(0,0,0,0.3);}
 
 .dot{width:16px;height:16px;border:2px solid #fff;border-radius:50%;margin:0 6px;}
 .dot.filled{background:#fff;box-shadow:0 0 12px #fff;}
@@ -37,10 +37,10 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow:h
 
 <!-- Lock Screen -->
 <div class="page active" id="p-lock">
-    <div class="polaroid" style="--r:-5deg;margin-bottom:30px"><img src="photo1.png"><span>For PRIYA 💕</span></div>
-    <div style="display:flex;margin:20px 0"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
+    <div class="polaroid" style="--r:-5deg;margin-bottom:25px"><img src="photo1.png"><span>For PRIYA 💕</span></div>
+    <div style="display:flex;margin:15px 0"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
     
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
         <button class="kkey" onclick="tap(1)">1</button>
         <button class="kkey" onclick="tap(2)">2</button>
         <button class="kkey" onclick="tap(3)">3</button>
@@ -58,24 +58,22 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow:h
 
 <!-- Camera -->
 <div class="page" id="p-cam">
-    <h2 style="font-family:'Playfair Display';font-size:1.8rem;margin-bottom:30px;text-align:center;">SMILE bandariya 🐒</h2>
-    <div style="position:relative;width:260px;height:200px;background:#222;border:6px solid #444;border-radius:20px;">
-        <div class="polaroid ejected" id="eject-p" style="position:absolute;bottom:20%;left:50%;transform:translateX(-50%);width:160px;"><img src="photo2.png"></div>
-    </div>
+    <h2 style="font-family:'Playfair Display';font-size:1.7rem;margin-bottom:25px;text-align:center;">SMILE bandariya 🐒</h2>
+    <div class="polaroid" style="max-height:45vh;width:240px;" id="cam-frame"><img src="photo2.png"></div>
     <button class="btn-main" id="btn-snap" onclick="snap()">📸 TAKE PICTURE</button>
     <button class="btn-main" id="btn-next-cam" style="display:none;" onclick="go('p-reveal')">NEXT →</button>
 </div>
 
 <!-- Reveal -->
 <div class="page" id="p-reveal">
-    <h2 style="font-family:'Dancing Script';font-size:2.4rem;text-align:center;margin-bottom:20px;">OMG 😱<br>Priya Sundari 💕</h2>
-    <div class="polaroid" style="--r:5deg;"><img src="photo2.png"></div>
+    <h2 style="font-family:'Dancing Script';font-size:2.3rem;text-align:center;margin-bottom:15px;">OMG 😱<br>Priya Sundari 💕</h2>
+    <div class="polaroid" style="max-height:50vh;"><img src="photo2.png"></div>
     <button class="btn-main" onclick="go('p-hub')">OPEN GIFTS 🎁</button>
 </div>
 
 <!-- Hub -->
 <div class="page" id="p-hub">
-    <h2 style="font-family:'Dancing Script';font-size:2.8rem;margin-bottom:40px;">Gifts for you</h2>
+    <h2 style="font-family:'Dancing Script';font-size:2.6rem;margin-bottom:40px;">Gifts for you</h2>
     <div style="display:flex;gap:35px;font-size:3.8rem;">
         <div onclick="go('p-letter')" style="cursor:pointer;">💌</div>
         <div onclick="go('p-gallery')" style="cursor:pointer;">📸</div>
@@ -84,130 +82,109 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow:h
 </div>
 
 <!-- Letter -->
-<div class="page" id="p-letter" style="background:#fffaf0;color:#333;justify-content:flex-start;padding-top:50px;">
-    <div style="background:white;padding:25px;border-radius:12px;max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,0.15);">
-        <h2 style="font-family:'Dancing Script';color:#c0392b;font-size:2rem;">Dear PRIYA,</h2>
-        <p style="margin:20px 0;line-height:1.7;font-size:1.1rem;">
+<div class="page" id="p-letter" style="background:#fffaf0;color:#333;justify-content:flex-start;padding-top:40px;overflow-y:auto;">
+    <div style="background:white;padding:20px;border-radius:12px;max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+        <h2 style="font-family:'Dancing Script';color:#c0392b;font-size:1.9rem;">Dear PRIYA,</h2>
+        <p style="margin:20px 0;line-height:1.7;font-size:1.05rem;">
             smjh me nhi aa rha h kya likhe isiliye <br><br>
             thank you ☺️<br><br>
             Gussa mat hona itna kam likhe h to 😅
         </p>
-        <div style="display:flex;gap:12px;justify-content:center;margin:20px 0;">
-            <img src="photo3.png" style="width:48%;border-radius:6px;">
-            <img src="photo4.png" style="width:48%;border-radius:6px;">
+        <div style="display:flex;gap:10px;justify-content:center;">
+            <img src="photo3.png" style="max-height:180px;width:auto;border-radius:6px;">
+            <img src="photo4.png" style="max-height:180px;width:auto;border-radius:6px;">
         </div>
-        <p style="text-align:right;font-family:'Dancing Script';font-size:1.3rem;">— yours always 💕</p>
+        <p style="text-align:right;font-family:'Dancing Script';font-size:1.3rem;margin-top:15px;">— yours always 💕</p>
     </div>
-    <button class="btn-main" onclick="go('p-hub')" style="background:#333;color:#fff;margin-top:30px;">BACK</button>
+    <button class="btn-main" onclick="go('p-hub')" style="background:#333;color:#fff;margin-top:25px;">BACK</button>
 </div>
 
 <!-- Gallery -->
-<div class="page" id="p-gallery" style="justify-content:flex-start;padding-top:40px;">
-    <h2 style="font-family:'Dancing Script';font-size:2.3rem;margin-bottom:20px;">Best Moments</h2>
-    <div style="display:flex;gap:15px;overflow-x:auto;width:100%;padding:10px 20px;">
-        <div class="polaroid" style="--r:-3deg;flex-shrink:0;width:170px;"><img src="photo5.png"></div>
-        <div class="polaroid" style="--r:4deg;flex-shrink:0;width:170px;"><img src="photo6.png"></div>
-        <div class="polaroid" style="--r:-2deg;flex-shrink:0;width:170px;"><img src="photo7.png"></div>
+<div class="page" id="p-gallery" style="justify-content:flex-start;padding-top:30px;">
+    <h2 style="font-family:'Dancing Script';font-size:2.2rem;margin-bottom:15px;">Best Moments</h2>
+    <div style="display:flex;gap:12px;overflow-x:auto;width:100%;padding:10px;">
+        <div class="polaroid" style="--r:-3deg;flex-shrink:0;max-width:160px;"><img src="photo5.png"></div>
+        <div class="polaroid" style="--r:4deg;flex-shrink:0;max-width:160px;"><img src="photo6.png"></div>
+        <div class="polaroid" style="--r:-2deg;flex-shrink:0;max-width:160px;"><img src="photo7.png"></div>
     </div>
     <button class="btn-main" onclick="go('p-hub')">BACK</button>
 </div>
 
 <!-- Music -->
 <div class="page" id="p-music">
-    <h2 style="font-family:'Dancing Script';font-size:2.4rem;margin-bottom:25px;">Our Song 🎵</h2>
-    <div class="polaroid" style="width:200px;height:200px;border-radius:50%;padding:8px;background:#111;" id="vinyl">
+    <h2 style="font-family:'Dancing Script';font-size:2.3rem;margin-bottom:20px;">Our Song 🎵</h2>
+    <div style="width:200px;height:200px;border-radius:50%;padding:10px;background:#111;" id="vinyl">
         <img src="photo8.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
     </div>
-    <button class="btn-main" onclick="toggleMusic()" id="play-btn" style="margin-top:30px;">▶ Play Song</button>
-    <button class="btn-main" onclick="go('p-hub')" style="background:#333;color:#fff;margin-top:15px;">BACK</button>
+    <button class="btn-main" onclick="toggleMusic()" id="play-btn" style="margin:25px 0 10px;">▶ Play Song</button>
+    <button class="btn-main" onclick="go('p-hub')" style="background:#333;color:#fff;">BACK</button>
 </div>
 
-<audio id="bg-music" loop>
-    <source src="YOUR_SONG.mp3" type="audio/mpeg">
-</audio>
+<audio id="bg-music" loop><source src="YOUR_SONG.mp3" type="audio/mpeg"></audio>
 
 <script>
+// Same script as before
 let input = "";
 function go(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 }
-
 function tap(n) {
     if(input.length < 4){
         input += n;
         updateDots();
         if(input === "2208") setTimeout(() => go('p-cam'), 250);
-        else if(input.length === 4){
-            alert("Wrong Passcode! Try again.");
-            input = "";
-            updateDots();
-        }
+        else if(input.length === 4){ alert("Wrong Passcode!"); input=""; updateDots(); }
     }
 }
 function del(){ input = input.slice(0,-1); updateDots(); }
 function updateDots(){
-    for(let i=0;i<4;i++){
-        document.getElementById('d'+i).classList.toggle('filled', i < input.length);
-    }
+    for(let i=0;i<4;i++) document.getElementById('d'+i).classList.toggle('filled', i < input.length);
 }
 
-// Snap Effect
 function snap(){
     document.getElementById('flash').classList.add('flash-on');
-    document.getElementById('eject-p').classList.add('shoot');
     document.getElementById('btn-snap').style.display = 'none';
-    setTimeout(() => {
+    setTimeout(()=>{ 
         document.getElementById('flash').classList.remove('flash-on');
         document.getElementById('btn-next-cam').style.display = 'block';
-    }, 1800);
+    }, 1500);
 }
 
-// Music
 let isPlaying = false;
 function toggleMusic(){
     const audio = document.getElementById('bg-music');
     const btn = document.getElementById('play-btn');
-    const vinyl = document.getElementById('vinyl');
-    
     if(!isPlaying){
         audio.play();
-        vinyl.style.animation = 'spin 3s linear infinite';
         btn.textContent = '⏸ Pause';
         isPlaying = true;
     } else {
         audio.pause();
-        vinyl.style.animation = 'none';
         btn.textContent = '▶ Play Song';
         isPlaying = false;
     }
 }
 
-// Petals
+// Petals + Flash
 setInterval(() => {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.textContent = ['❤️','🌸','💕','✨'][Math.floor(Math.random()*4)];
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.animationDuration = (Math.random() * 6 + 7) + 's';
-    petal.style.opacity = Math.random() * 0.7 + 0.6;
-    document.getElementById('petals').appendChild(petal);
-    setTimeout(() => petal.remove(), 15000);
-}, 350);
+    const p = document.createElement('div'); p.className='petal';
+    p.textContent = ['❤️','🌸','💕'][Math.floor(Math.random()*3)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (Math.random()*5 + 8) + 's';
+    document.getElementById('petals').appendChild(p);
+    setTimeout(()=>p.remove(), 14000);
+}, 400);
 
-// Flash Element
 const flash = document.createElement('div');
 flash.id = 'flash';
-flash.style.cssText = 'position:fixed;inset:0;background:white;opacity:0;pointer-events:none;z-index:100;';
+flash.style = 'position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:999;';
 document.body.appendChild(flash);
 </script>
 
 <style>
-#flash{animation:flash 0.6s;}
-@keyframes flash{0%,100%{opacity:0;} 50%{opacity:0.9;}}
-.ejected{transition:all 2s;}
-.ejected.shoot{transform:translateX(-50%) translateY(-180px) rotate(-15deg)!important;opacity:1;}
-@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+#flash{animation:flashAnim 0.7s;} 
+@keyframes flashAnim{0%,100%{opacity:0} 40%{opacity:0.85}}
 </style>
 </body>
 </html>
